@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Ana ♥</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;700&family=Crimson+Text:ital@0;1&family=Pacifico&family=Kaushan+Script&display=swap" rel="stylesheet">
+    <style>
+        /* === ESTILOS GLOBALES === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            overflow: hidden;
+            height: 100vh;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 30%, #2a1a2a 70%, #1a1a2e 100%);
+            position: relative;
+            cursor: default;
+        }
+
+        /* === FONDO CON ESTRELLAS === */
+        .starry-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            background: rgba(255, 192, 203, 0.8);
+            border-radius: 50%;
+            animation: twinkle 2s infinite ease-in-out;
+        }
+
+        .star.pink-star {
+            background: rgba(255, 182, 193, 0.9);
+        }
+
+        .star.white-star {
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* === CARTA CERRADA === */
+        .letter-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .letter-container:hover {
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        .envelope {
+            width: 200px;
+            height: 140px;
+            background: linear-gradient(135deg, #ffb3ba 0%, #ffdfba 100%);
+            position: relative;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(255, 179, 186, 0.4);
+            animation: glow 2s infinite ease-in-out;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 10px 30px rgba(255, 179, 186, 0.4); }
+            50% { box-shadow: 0 15px 40px rgba(255, 179, 186, 0.8); }
+        }
+
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-top: 70px solid #ffc3a0;
+            transform-origin: center bottom;
+            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .envelope.opening::before {
+            transform: rotateX(180deg);
+        }
+
+        .envelope::after {
+            content: '♥';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            color: #ff69b4;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.6);
+        }
+
+        /* === CONTENIDO DE LA CARTA === */
+        .letter-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 100vh;
+            z-index: 5;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s ease;
+        }
+
+        .letter-content.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* === FLORES ESTILO IMAGEN === */
+        .minimalist-flower {
+            position: absolute;
+            animation: gentle-sway 4s infinite ease-in-out;
+        }
+
+        .flower-stem {
+            position: absolute;
+            width: 3px;
+            height: 80px;
+            background: linear-gradient(to bottom, #8b4d8b, #4a4a4a);
+            border-radius: 2px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: stem-sway 5s infinite ease-in-out;
+        }
+
+        .flower-bloom {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+        }
+
+        .minimal-petal {
+            position: absolute;
+            width: 20px;
+            height: 25px;
+            background: linear-gradient(135deg, #ff69b4, #ff91a4, #ffc0cb);
+            border-radius: 50% 50% 20% 20%;
+            top: 12px;
+            left: 15px;
+            transform-origin: center bottom;
+            opacity: 0.9;
+        }
+
+        .minimal-petal:nth-child(1) { transform: rotate(0deg); }
+        .minimal-petal:nth-child(2) { transform: rotate(60deg); }
+        .minimal-petal:nth-child(3) { transform: rotate(120deg); }
+        .minimal-petal:nth-child(4) { transform: rotate(180deg); }
+        .minimal-petal:nth-child(5) { transform: rotate(240deg); }
+        .minimal-petal:nth-child(6) { transform: rotate(300deg); }
+
+        .flower-center {
+            position: absolute;
+            top: 18px;
+            left: 21px;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, #ff1493, #8b008b);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .flower-leaves {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .minimal-leaf {
+            position: absolute;
+            width: 15px;
+            height: 8px;
+            background: linear-gradient(45deg, #8b4d8b, #4a4a4a);
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+
+        .minimal-leaf.left {
+            left: -18px;
+            transform: rotate(-30deg);
+        }
+
+        .minimal-leaf.right {
+            right: -18px;
+            transform: rotate(30deg);
+        }
+
+        @keyframes gentle-sway {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(1deg); }
+            75% { transform: rotate(-1deg); }
+        }
+
+        @keyframes stem-sway {
+            0%, 100% { transform: translateX(-50%) rotate(0deg); }
+            25% { transform: translateX(-50%) rotate(2deg); }
+            75% { transform: translateX(-50%) rotate(-2deg); }
+        }
+
+        /* === TULIPANES === */
+        .tulip {
+            position: absolute;
+            animation: bloom 2s ease-out, float 4s infinite ease-in-out 2s;
+            transform: scale(0);
+        }
+
+        .tulip-flower {
+            width: 25px;
+            height: 30px;
+            position: relative;
+        }
+
+        .tulip-petal {
+            position: absolute;
+            width: 12px;
+            height: 25px;
+            border-radius: 50% 50% 20% 20%;
+            top: 0;
+            left: 6px;
+        }
+
+        .tulip-petal.left {
+            background: linear-gradient(45deg, #dda0dd, #e6b3ff);
+            transform: rotate(-15deg);
+            left: 2px;
+        }
+
+        .tulip-petal.center {
+            background: linear-gradient(0deg, #dda0dd, #f0c8ff);
+            z-index: 2;
+        }
+
+        .tulip-petal.right {
+            background: linear-gradient(-45deg, #dda0dd, #e6b3ff);
+            transform: rotate(15deg);
+            left: 11px;
+        }
+
+        .tulip-stem {
+            position: absolute;
+            top: 25px;
+            left: 12px;
+            width: 2px;
+            height: 50px;
+            background: linear-gradient(to bottom, #4a7c59, #2d5016);
+            border-radius: 2px;
+        }
+
+        @keyframes bloom {
+            0% { transform: scale(0) rotate(0deg); }
+            60% { transform: scale(1.1) rotate(3deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        /* === FRESAS === */
+        .strawberry {
+            position: absolute;
+            animation: strawberry-float 6s infinite ease-in-out;
+        }
+
+        .strawberry-body {
+            width: 20px;
+            height: 25px;
+            background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+            border-radius: 0 0 50% 50%;
+            position: relative;
+        }
+
+        .strawberry-body::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #ffff99;
+            border-radius: 50%;
+            box-shadow: 
+                3px 3px 0 #ffff99,
+                6px 6px 0 #ffff99,
+                2px 8px 0 #ffff99,
+                5px 10px 0 #ffff99,
+                8px 12px 0 #ffff99,
+                3px 14px 0 #ffff99,
+                6px 16px 0 #ffff99;
+        }
+
+        .strawberry-leaves {
+            position: absolute;
+            top: -5px;
+            left: 2px;
+            width: 16px;
+            height: 8px;
+        }
+
+        .strawberry-leaf {
+            position: absolute;
+            width: 4px;
+            height: 6px;
+            background: #4a7c59;
+            border-radius: 50% 10%;
+            transform-origin: bottom center;
+        }
+
+        .strawberry-leaf:nth-child(1) { left: 0; transform: rotate(-20deg); }
+        .strawberry-leaf:nth-child(2) { left: 3px; transform: rotate(-10deg); }
+        .strawberry-leaf:nth-child(3) { left: 6px; }
+        .strawberry-leaf:nth-child(4) { left: 9px; transform: rotate(10deg); }
+        .strawberry-leaf:nth-child(5) { left: 12px; transform: rotate(20deg); }
+
+        @keyframes strawberry-float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        /* === CORAZONES Y BURBUJAS === */
+        .heart {
+            position: absolute;
+            animation: heart-float 8s infinite ease-in-out;
+            color: rgba(255, 182, 193, 0.8);
+            font-size: 20px;
+            z-index: 3;
+        }
+
+        .heart.large {
+            font-size: 28px;
+            color: rgba(255, 105, 180, 0.9);
+            animation-duration: 6s;
+        }
+
+        .heart.small {
+            font-size: 14px;
+            color: rgba(255, 192, 203, 0.7);
+            animation-duration: 10s;
+        }
+
+        .heart.top-floating {
+            position: fixed;
+            animation: top-heart-float 12s infinite linear;
+            z-index: 20;
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 192, 203, 0.4), rgba(255, 182, 193, 0.1));
+            animation: bubble-float 10s infinite ease-in-out;
+            border: 1px solid rgba(255, 182, 193, 0.3);
+        }
+
+        @keyframes heart-float {
+            0% { transform: translateY(0px) scale(1) rotate(0deg); opacity: 0.7; }
+            50% { transform: translateY(-20px) scale(1.2) rotate(180deg); opacity: 1; }
+            100% { transform: translateY(0px) scale(1) rotate(360deg); opacity: 0.7; }
+        }
+
+        @keyframes top-heart-float {
+            0% { 
+                transform: translateX(-100px) translateY(0px) rotate(0deg) scale(1);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% { 
+                transform: translateX(calc(100vw + 100px)) translateY(-50px) rotate(360deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes bubble-float {
+            0%, 100% { transform: translateY(0px) scale(1); opacity: 0.4; }
+            50% { transform: translateY(-30px) scale(1.1); opacity: 0.8; }
+        }
+
+        /* === NOMBRE SUPERIOR "ANA OSFIA" === */
+        .top-name {
+            position: absolute;
+            top: 8%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Kaushan Script', cursive;
+            font-size: 56px;
+            font-weight: 400;
+            background: linear-gradient(135deg, #ff69b4, #ffc0cb, #dda0dd, #ff91a4);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 20px rgba(255, 105, 180, 0.4);
+            animation: top-name-glow 2.5s infinite ease-in-out, top-gradient-shift 3s infinite ease-in-out;
+            letter-spacing: 3px;
+            z-index: 15;
+        }
+
+        @keyframes top-name-glow {
+            0%, 100% { 
+                text-shadow: 0 4px 20px rgba(255, 107, 157, 0.3);
+                transform: translateX(-50%) scale(1);
+            }
+            50% { 
+                text-shadow: 0 6px 30px rgba(255, 107, 157, 0.6), 0 0 40px rgba(230, 179, 255, 0.4);
+                transform: translateX(-50%) scale(1.02);
+            }
+        }
+
+        @keyframes top-gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* === NOMBRE CENTRAL "ANA OSFIA" === */
+        .main-name {
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Kaushan Script', cursive;
+            font-size: 80px;
+            font-weight: 400;
+            background: linear-gradient(45deg, #ffd700, #ffb347, #ff69b4, #ffd700);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            animation: name-glow 3s infinite ease-in-out, gradient-shift 4s infinite ease-in-out;
+            opacity: 0;
+            animation-delay: 3s;
+            animation-fill-mode: both;
+        }
+
+        @keyframes name-glow {
+            0%, 100% { 
+                text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% { 
+                text-shadow: 0 0 50px rgba(255, 215, 0, 0.8), 0 0 80px rgba(255, 105, 180, 0.6);
+                transform: translate(-50%, -50%) scale(1.05);
+            }
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* === VERSÍCULO === */
+        .verse-container {
+            position: absolute;
+            bottom: 6%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            opacity: 0;
+            animation: verse-appear 2s ease-in-out 8s both;
+            max-width: 85%;
+        }
+
+        .verse-decoration {
+            position: relative;
+            padding: 30px 40px;
+        }
+
+        .verse-decoration::before,
+        .verse-decoration::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 20px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 20"><path d="M5,10 Q15,5 25,10 Q35,15 45,10 Q55,5 60,10" stroke="%23ffd700" stroke-width="1" fill="none"/><circle cx="10" cy="8" r="2" fill="%23ffb3d9"/><circle cx="25" cy="12" r="1.5" fill="%23ffc3e6"/><circle cx="40" cy="8" r="2" fill="%23ffb3d9"/><circle cx="50" cy="12" r="1.5" fill="%23ffc3e6"/></svg>') no-repeat center;
+            background-size: contain;
+        }
+
+        .verse-decoration::before {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .verse-decoration::after {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) rotate(180deg);
+        }
+
+        .verse-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 26px;
+            color: #f8f8ff;
+            text-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .verse-reference {
+            font-family: 'Crimson Text', serif;
+            font-size: 18px;
+            color: #dda0dd;
+            font-style: italic;
+            text-shadow: 0 1px 5px rgba(221, 160, 221, 0.4);
+        }
+
+        @keyframes verse-appear {
+            0% { 
+                opacity: 0; 
+                transform: translateX(-50%) translateY(30px);
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateX(-50%) translateY(0px);
+            }
+        }
+
+        /* === ANIMACIÓN DE ENTRADA === */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-out both;
+        }
+
+        /* === OCULTAR CARTA === */
+        .letter-container.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(-50%, -50%) scale(0);
+            transition: all 1s ease;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .top-name {
+                font-size: 42px;
+                letter-spacing: 2px;
+                top: 6%;
+            }
+            
+            .main-name {
+                font-size: 60px;
+                top: 38%;
+            }
+            
+            .verse-text {
+                font-size: 22px;
+                line-height: 1.7;
+            }
+            
+            .verse-reference {
+                font-size: 16px;
+            }
+            
+            .verse-container {
+                max-width: 90%;
+                bottom: 8%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-name {
+                font-size: 32px;
+                letter-spacing: 1px;
+            }
+            
+            .main-name {
+                font-size: 45px;
+            }
+            
+            .verse-text {
+                font-size: 19px;
+                line-height: 1.6;
+            }
+            
+            .verse-reference {
+                font-size: 15px;
+            }
+            
+            .envelope {
+                width: 160px;
+                height: 112px;
+            }
+            
+            .verse-container {
+                max-width: 95%;
+                bottom: 10%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- === FONDO ESTRELLADO === -->
+    <div class="starry-background" id="starryBg"></div>
+
+    <!-- === NOMBRE SUPERIOR === -->
+    <div class="top-name">Ana Sofía</div>
+
+    <!-- === CARTA CERRADA === -->
+    <div class="letter-container" id="letterContainer">
+        <div class="envelope" id="envelope"></div>
+    </div>
+
+    <!-- === CONTENIDO DE LA CARTA === -->
+    <div class="letter-content" id="letterContent">
+        <!-- === NOMBRE PRINCIPAL === -->
+        <div class="main-name">Ana Sofía</div>
+
+        <!-- === VERSÍCULO === -->
+        <div class="verse-container">
+            <div class="verse-decoration">
+                <div class="verse-text">
+                    "Cautivaste mi corazón, hermosa mía, novia mía;<br>
+                    me cautivaste con una sola mirada de tus ojos,<br>
+                    con una sola cuenta de tu collar."
+                </div>
+                <div class="verse-reference">– Cantares 4:9</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // === CONFIGURACIÓN INICIAL === 
+        let isOpened = false;
+        const letterContainer = document.getElementById('letterContainer');
+        const envelope = document.getElementById('envelope');
+        const letterContent = document.getElementById('letterContent');
+
+        // === CREAR ESTRELLAS === 
+        function createStars() {
+            const starryBg = document.getElementById('starryBg');
+            const numberOfStars = 60;
+
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Diferentes tipos de estrellas
+                if (Math.random() > 0.6) {
+                    star.classList.add('pink-star');
+                } else {
+                    star.classList.add('white-star');
+                }
+                
+                // Posición aleatoria
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                
+                // Tamaño aleatorio
+                const size = Math.random() * 4 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                
+                // Delay aleatorio para el parpadeo
+                star.style.animationDelay = Math.random() * 2 + 's';
+                
+                starryBg.appendChild(star);
+            }
+        }
+
+        // === CREAR FLORES MINIMALISTAS === 
+        function createMinimalistFlowers() {
+            const numberOfFlowers = 6;
+            
+            for (let i = 0; i < numberOfFlowers; i++) {
+                setTimeout(() => {
+                    const flower = document.createElement('div');
+                    flower.classList.add('minimalist-flower', 'fade-in');
+                    
+                    // Posición aleatoria
+                    flower.style.left = Math.random() * 70 + 15 + '%';
+                    flower.style.top = Math.random() * 50 + 25 + '%';
+                    flower.style.animationDelay = Math.random() * 2 + 's';
+                    
+                    // Crear tallo
+                    const stem = document.createElement('div');
+                    stem.classList.add('flower-stem');
+                    
+                    // Crear flor
+                    const bloom = document.createElement('div');
+                    bloom.classList.add('flower-bloom');
+                    
+                    // Crear pétalos
+                    for (let j = 0; j < 6; j++) {
+                        const petal = document.createElement('div');
+                        petal.classList.add('minimal-petal');
+                        bloom.appendChild(petal);
+                    }
+                    
+                    // Crear centro
+                    const center = document.createElement('div');
+                    center.classList.add('flower-center');
+                    bloom.appendChild(center);
+                    
+                    // Crear hojas
+                    const leaves = document.createElement('div');
+                    leaves.classList.add('flower-leaves');
+                    
+                    const leftLeaf = document.createElement('div');
+                    leftLeaf.classList.add('minimal-leaf', 'left');
+                    const rightLeaf = document.createElement('div');
+                    rightLeaf.classList.add('minimal-leaf', 'right');
+                    
+                    leaves.appendChild(leftLeaf);
+                    leaves.appendChild(rightLeaf);
+                    
+                    flower.appendChild(stem);
+                    flower.appendChild(bloom);
+                    flower.appendChild(leaves);
+                    
+                    letterContent.appendChild(flower);
+                }, i * 400);
+            }
+        }
+
+        // === CREAR TULIPANES === 
+        function createTulips() {
+            const numberOfTulips = 6;
+            
+            for (let i = 0; i < numberOfTulips; i++) {
+                setTimeout(() => {
+                    const tulip = document.createElement('div');
+                    tulip.classList.add('tulip');
+                    
+                    // Posición aleatoria
+                    tulip.style.left = Math.random() * 70 + 15 + '%';
+                    tulip.style.top = Math.random() * 50 + 25 + '%';
+                    tulip.style.animationDelay = Math.random() * 1 + 's';
+                    
+                    // Crear flor
+                    const flower = document.createElement('div');
+                    flower.classList.add('tulip-flower');
+                    
+                    // Crear pétalos
+                    const petalLeft = document.createElement('div');
+                    petalLeft.classList.add('tulip-petal', 'left');
+                    const petalCenter = document.createElement('div');
+                    petalCenter.classList.add('tulip-petal', 'center');
+                    const petalRight = document.createElement('div');
+                    petalRight.classList.add('tulip-petal', 'right');
+                    
+                    flower.appendChild(petalLeft);
+                    flower.appendChild(petalCenter);
+                    flower.appendChild(petalRight);
+                    
+                    // Crear tallo
+                    const stem = document.createElement('div');
+                    stem.classList.add('tulip-stem');
+                    
+                    tulip.appendChild(flower);
+                    tulip.appendChild(stem);
+                    
+                    letterContent.appendChild(tulip);
+                }, i * 300 + 1000);
+            }
+        }
+
+        // === CREAR FRESAS FLOTANTES === 
+        function createStrawberries() {
+            const numberOfStrawberries = 5;
+            
+            for (let i = 0; i < numberOfStrawberries; i++) {
+                setTimeout(() => {
+                    const strawberry = document.createElement('div');
+                    strawberry.classList.add('strawberry');
+                    
+                    // Posición inicial aleatoria
+                    strawberry.style.left = Math.random() * 90 + 5 + '%';
+                    strawberry.style.animationDelay = Math.random() * 3 + 's';
+                    
+                    // Crear cuerpo
+                    const body = document.createElement('div');
+                    body.classList.add('strawberry-body');
+                    
+                    // Crear hojas
+                    const leaves = document.createElement('div');
+                    leaves.classList.add('strawberry-leaves');
+                    for (let j = 0; j < 5; j++) {
+                        const leaf = document.createElement('div');
+                        leaf.classList.add('strawberry-leaf');
+                        leaves.appendChild(leaf);
+                    }
+                    
+                    strawberry.appendChild(body);
+                    strawberry.appendChild(leaves);
+                    
+                    letterContent.appendChild(strawberry);
+                    
+                    // Eliminar fresa después de la animación
+                    setTimeout(() => {
+                        if (strawberry.parentNode) {
+                            strawberry.parentNode.removeChild(strawberry);
+                        }
+                    }, 6000);
+                }, i * 800 + 2000);
+            }
+        }
+
+        // === CREAR CORAZONES === 
+        function createHearts() {
+            const numberOfHearts = 15;
+            
+            for (let i = 0; i < numberOfHearts; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart');
+                    heart.innerHTML = '♥';
+                    
+                    // Diferentes tamaños y tipos
+                    const size = Math.random();
+                    if (size > 0.7) {
+                        heart.classList.add('large');
+                    } else if (size < 0.3) {
+                        heart.classList.add('small');
+                    }
+                    
+                    // Posición aleatoria
+                    heart.style.left = Math.random() * 90 + 5 + '%';
+                    heart.style.top = Math.random() * 80 + 10 + '%';
+                    heart.style.animationDelay = Math.random() * 4 + 's';
+                    
+                    letterContent.appendChild(heart);
+                }, i * 300 + 1500);
+            }
+        }
+
+        // === CREAR CORAZONES FLOTANTES SUPERIORES === 
+        function createTopFloatingHearts() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart', 'top-floating');
+                heart.innerHTML = '♥';
+                
+                // Diferentes colores y tamaños
+                const colors = [
+                    'rgba(255, 182, 193, 0.8)',
+                    'rgba(255, 105, 180, 0.9)',
+                    'rgba(255, 192, 203, 0.7)',
+                    'rgba(255, 20, 147, 0.8)'
+                ];
+                
+                const sizes = ['16px', '20px', '24px', '28px'];
+                
+                heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                heart.style.fontSize = sizes[Math.floor(Math.random() * sizes.length)];
+                heart.style.top = Math.random() * 30 + 10 + '%';
+                heart.style.animationDelay = '0s';
+                
+                document.body.appendChild(heart);
+                
+                // Eliminar corazón después de la animación
+                setTimeout(() => {
+                    if (heart.parentNode) {
+                        heart.parentNode.removeChild(heart);
+                    }
+                }, 12000);
+            }, 2000);
+        }
+
+        // === CREAR BURBUJAS === 
+        function createBubbles() {
+            const numberOfBubbles = 12;
+            
+            for (let i = 0; i < numberOfBubbles; i++) {
+                setTimeout(() => {
+                    const bubble = document.createElement('div');
+                    bubble.classList.add('bubble');
+                    
+                    // Tamaño aleatorio
+                    const size = Math.random() * 30 + 10;
+                    bubble.style.width = size + 'px';
+                    bubble.style.height = size + 'px';
+                    
+                    // Posición aleatoria
+                    bubble.style.left = Math.random() * 85 + 7.5 + '%';
+                    bubble.style.top = Math.random() * 75 + 12.5 + '%';
+                    bubble.style.animationDelay = Math.random() * 5 + 's';
+                    
+                    letterContent.appendChild(bubble);
+                }, i * 400 + 2500);
+            }
+        }
+
+        // === CREAR FRESAS CONTINUAS === 
+        function continuousStrawberries() {
+            setInterval(() => {
+                if (isOpened) {
+                    const strawberry = document.createElement('div');
+                    strawberry.classList.add('strawberry');
+                    
+                    // Posición inicial aleatoria
+                    strawberry.style.left = Math.random() * 90 + 5 + '%';
+                    
+                    // Crear cuerpo
+                    const body = document.createElement('div');
+                    body.classList.add('strawberry-body');
+                    
+                    // Crear hojas
+                    const leaves = document.createElement('div');
+                    leaves.classList.add('strawberry-leaves');
+                    for (let j = 0; j < 5; j++) {
+                        const leaf = document.createElement('div');
+                        leaf.classList.add('strawberry-leaf');
+                        leaves.appendChild(leaf);
+                    }
+                    
+                    strawberry.appendChild(body);
+                    strawberry.appendChild(leaves);
+                    
+                    letterContent.appendChild(strawberry);
+                    
+                    // Eliminar fresa después de la animación
+                    setTimeout(() => {
+                        if (strawberry.parentNode) {
+                            strawberry.parentNode.removeChild(strawberry);
+                        }
+                    }, 6000);
+                }
+            }, 2000);
+        }
+
+        // === EVENTO DE CLICK EN LA CARTA === 
+        letterContainer.addEventListener('click', function() {
+            if (!isOpened) {
+                isOpened = true;
+                
+                // Animar apertura de la carta
+                envelope.classList.add('opening');
+                
+                // Ocultar carta después de la animación
+                setTimeout(() => {
+                    letterContainer.classList.add('hidden');
+                }, 1000);
+                
+                // Mostrar contenido
+                setTimeout(() => {
+                    letterContent.classList.add('show');
+                    
+                    // Crear todos los elementos animados
+                    createMinimalistFlowers();
+                    createTulips();
+                    createStrawberries();
+                    createHearts();
+                    createBubbles();
+                    
+                    // Iniciar creación continua de fresas
+                    continuousStrawberries();
+                }, 1500);
+            }
+        });
+
+        // === INICIALIZACIÓN === 
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            // Iniciar corazones flotantes superiores inmediatamente
+            createTopFloatingHearts();
+        });
+
+        // === EFECTO DE HOVER EN LA CARTA === 
+        letterContainer.addEventListener('mouseenter', function() {
+            if (!isOpened) {
+                this.style.transform = 'translate(-50%, -50%) scale(1.1)';
+            }
+        });
+
+        letterContainer.addEventListener('mouseleave', function() {
+            if (!isOpened) {
+                this.style.transform = 'translate(-50%, -50%) scale(1)';
+            }
+        });
+    </script>
+</body>
+</html>
